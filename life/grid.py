@@ -1,6 +1,9 @@
 
 import collections
 
+ALIVE = "♥"
+DEAD = "‧"
+
 class LifeGrid:
     def __init__(self, pattern):
         self.pattern = pattern
@@ -54,13 +57,25 @@ class LifeGrid:
             cell for cell, num in num_neighbours.items() if num == 3
         } - self.pattern.alive_cells
 
+
         # Update .alive_cells with the set that results as the union of the cells 
         # that stay alive and those that come alive.
         self.pattern.alive_cells = stay_alive | come_alive
 
 
     def as_string(self, bbox):
-        pass
+        start_col, start_row, end_col, end_row = bbox
+
+        display = [self.pattern.name.center(2 * (end_col - start_col ))]
+
+        for row in range(start_row, end_row):
+            display_row = [
+                ALIVE if (row,col) in self.pattern.alive_cells else DEAD
+                for col in range(start_col, end_col)
+            ]
+            display.append(" ".join(display_row))
+
+        return "\n".join(display)
 
     # To check whether your code works as expected, 
     # Create string representation of the living cells in each generation. 
