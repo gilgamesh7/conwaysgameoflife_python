@@ -1,0 +1,73 @@
+Step 1 - Inspect the workspace : 
+================================
+Read AGENTS.md first. Then inspect the current workspace, including existing files, project configuration, and Git status.
+
+We are starting a new Conway's Game of Life project.
+
+Do not create or modify application code yet.
+
+Tell me:
+1. What files and folders already exist?
+2. What development tools and Python version are available?
+3. Is there any existing code or user work to preserve?
+4. What decisions must we make before implementation?
+
+Recommend the smallest sensible starting setup for a beginner. Do not install packages or run destructive commands.
+
+Step 2 - Write the product brief: 
+=================================
+Act as a product manager helping me define the first version of Conway's Game of Life.
+
+See the see section  "Phase 1 Requirements" in file "AGENTS.md" for what the application should do.
+
+First, ask me any essential questions about the user experience and scope. Do not implement anything.
+
+Then propose:
+1. A concise product brief.
+2. Functional and non-functional requirements.
+3. Explicit acceptance criteria.
+4. Out-of-scope features for version 1.
+5. A definition of done.
+
+Save the approved product brief and acceptance criteria in README.md. 
+Update README.md, without overwriting existing content. 
+Wait for my approval before making the change.
+
+My clarifications :
+  1.  Grid Topology: How should the grid boundaries be handled: wrapping (toroidal) or fixed dead walls? Fixed Dead Walls
+  2.  Dead Cell Representation & Display: How should dead cells appear visually (space, dot, dimmed symbol), and should the generation or live cell count be displayed? Use space for dead cells and
+  display generation count
+  3.  Random Seed Cell Count: Is the random seed exactly 100 cells, or a random number up to 100 cells? Random seed upto 100 cells
+  4.  Audible Click: What audible feedback is desired for cell clicks: terminal bell, system sound, or graceful fallback? A terminal bell
+  5.  Escape Key Handling: How should the escape key be handled: single `Esc` or `Ctrl+C` for graceful exit? Use `Ctrl+C` for graceful exit
+
+Step 3 - Research and record decisions
+======================================
+Research technical options in RESEARCH.md and draft the ordered development units in PLAN.md for my review before implementing Unit 1
+My decisions :
+1. Use Option B: Install pytest using uv for testing framework
+2. For Error Handling Pattern , introduce a 3rd-party result package
+3. For Project Layout: 
+- Keep AGENTS.md, README.md, RESEARCH.md, PLAN.md, RETRO.md and pyproject.toml in root directory
+- in src directory, sub-directory game_of_life/, keep __init__.py b(Marks the package and optionally exposes its public API), engine.py (Grid representation, neighbour counting, and generation updates) , patterns.py () Predefined patterns such as blinker, block, and glider) and app.py (Graphical interface, controls, rendering, and simulation loop)
+- in tests keep the test_engine.py (Tests for the rules and edge cases) and test_patterns.py (Tests for predefined pattern data)
+
+
+Step 4 - Implement
+==================
+Read AGENTS.md and PLAN.md.
+
+Implement only the first approved, incomplete development Unit 0 - Environment & Package Setup
+
+Before changing files:
+1. Explain what you intend to change.
+2. Identify the acceptance criteria.
+3. Explain any important technical decisions.
+
+Then implement the unit, add appropriate tests, and run the relevant checks.
+
+Do not start the next unit.
+
+When finished, report the files created or modified, what the code does, tests and commands executed, actual test results including failures, and outstanding issues or decisions for me.
+
+Update PLAN.md to reflect the verified status of the unit. Do not commit or push changes without my approval.
